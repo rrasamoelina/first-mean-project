@@ -15,6 +15,13 @@ businessRoutes.route('/add').post(function(req, res) {
         });
 });
 
+businessRoutes.route('/edit/:id').get(function(req, res) {
+    let id = req.params.id;
+    Business.findById(id, function(err, business) {
+        res.json(business);
+    });
+});
+
 businessRoutes.route('/').get(function(req, res) {
     Business.find(function(err, businesses) {
         if (err) {
@@ -26,7 +33,7 @@ businessRoutes.route('/').get(function(req, res) {
 });
 
 businessRoutes.route('/update/:id').post(function(req, res) {
-    Business.findById(req.params.id, function(err, next, business) {
+    Business.findById(req.params.id, function(err, business) {
         if (!business) 
             return next(new Error('Could not load Document'));
         else {
