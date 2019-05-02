@@ -38,9 +38,11 @@ export class GstEditComponent implements OnInit {
 
   updateBusiness(person_name, business_name, business_gst_number) {
     this.route.params.subscribe(params => {
-      this.bs.updateBusiness(person_name, business_name, business_gst_number, params['id']);
+      this.bs.updateBusiness(person_name, business_name, business_gst_number, params['id']).subscribe(res => {
+        console.log(res);
+        this.router.navigate(['business']);
+      });
     });
-    this.router.navigate(['business']);
   }
 
 }

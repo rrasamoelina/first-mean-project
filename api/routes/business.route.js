@@ -8,7 +8,7 @@ businessRoutes.route('/add').post(function(req, res) {
     let business = new Business(req.body)
     business.save()
         .then(business => {
-            res.status(200).json({ 'business': 'business has been added successfully' });
+            res.json({ 'business': 'business has been added successfully', 'status': 200 });
         })
         .catch (err => {
             res.status(400).send("unabled to save to database");
